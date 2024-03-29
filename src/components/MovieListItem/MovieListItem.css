@@ -1,0 +1,13 @@
+.movie-list-item {
+  width: 454px;
+  height: 281px;
+
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
+  min-width: 380px;
+  list-style: none;
+}
+
+.movie-img {
+  width: 183px;
+  height: 100%;
+}

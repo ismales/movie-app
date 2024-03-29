@@ -18,7 +18,10 @@ module.exports = {
     "react/prefer-stateless-function": 0,
     "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
     "react/state-in-constructor": [2, "never"],
-    "class-methods-use-this": [2, { exceptMethods: ["filteredTasks"] }],
+    "class-methods-use-this": [0],
+    "react/prop-types": "off",
+    "global-require": 0,
+    "no-plusplus": 0,
   },
   settings: {
     react: {
