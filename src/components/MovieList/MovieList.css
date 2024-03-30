@@ -1,7 +1,3 @@
 .movie-list {
-  max-width: 1010px;
-  height: 100vh;
-  margin: 0 auto !important;
-  padding: 20px;
-  background: #ffffff;
+  text-align: start;
 }

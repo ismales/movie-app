@@ -10,3 +10,11 @@ body {
 *::after {
   box-sizing: border-box;
 }
+
+.main {
+  max-width: 1010px;
+  margin-inline: auto;
+  text-align: center;
+  padding: 20px 30px;
+  background: #ffffff;
+}

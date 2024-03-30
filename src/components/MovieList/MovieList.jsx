@@ -13,7 +13,7 @@ export default class MovieList extends Component {
       <Row gutter={[32, 32]} justify="center" className="movie-list">
         {data.map((movie) => (
           <Col span={12} key={movie.id}>
-            <MovieListItem movie={movie} />
+            <MovieListItem movie={movie}/>
           </Col>
         ))}
       </Row>

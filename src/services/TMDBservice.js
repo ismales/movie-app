@@ -1,5 +1,5 @@
 export default class TMDBservice {
-  apiBase = "https://api.themoviedb.org/3";
+  apiBase = "https://api.themoviedb.org/";
 
   searchMovie = "/search/movie?query=return";
 

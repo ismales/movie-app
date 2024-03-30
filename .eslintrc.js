@@ -20,7 +20,6 @@ module.exports = {
     "react/state-in-constructor": [2, "never"],
     "class-methods-use-this": [0],
     "react/prop-types": "off",
-    "global-require": 0,
     "no-plusplus": 0,
   },
   settings: {
