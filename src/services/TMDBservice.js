@@ -1,7 +1,7 @@
 export default class TMDBservice {
   apiBase = "https://api.themoviedb.org/3";
 
-  searchMovie = "/search/movie?query=return";
+  searchMovie = "/search/movie?";
 
   apiKey = "edf1b2d191eb5263e6c7f78b0f2ac438";
 
@@ -22,14 +22,9 @@ export default class TMDBservice {
     return data;
   }
 
-  // async getMovies(query) {
-  //   const url = `${this.apiBase}${this.searchMovie}&api_key=${this.apiKey}&query=${query}`;
-  //   const data = await this.getData(url);
-  //   return data;
-  // }
-  async getMovies() {
-    const url = this.searchMovie;
-    const movies = await this.getData(url);
-    return movies;
+  async getMovies(query, page) {
+    const url = `${this.searchMovie}&query=${query}&page=${page}`;
+    const data = await this.getData(url);
+    return data;
   }
 }

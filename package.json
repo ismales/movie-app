@@ -9,9 +9,11 @@
     "antd": "^5.15.3",
     "date-fns": "^3.6.0",
     "eslint-config-prettier": "^9.1.0",
+    "lodash.debounce": "^4.0.8",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
+    "react-detect-offline": "^2.4.5",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"

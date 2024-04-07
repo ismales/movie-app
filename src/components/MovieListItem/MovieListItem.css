@@ -10,6 +10,8 @@
 .movie-img {
   width: 183px;
   height: 100%;
+  object-fit: cover;
+  background-color: #f0efed;
 }
 
 .content {

@@ -15,12 +15,13 @@ module.exports = {
   },
   plugins: ["react", "@babel"],
   rules: {
-    "react/prefer-stateless-function": 0,
     "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
+    "react/prefer-stateless-function": 0,
     "react/state-in-constructor": [2, "never"],
     "class-methods-use-this": [0],
     "react/prop-types": "off",
     "no-plusplus": 0,
+    "prefer-rest-params": 0,
   },
   settings: {
     react: {

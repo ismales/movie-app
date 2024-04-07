@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import { format } from "date-fns";
-import { Spin, Alert } from "antd";
+import { Online, Offline } from "react-detect-offline";
+import { Row, Col } from "antd";
 
 import MovieList from "./components/MovieList/MovieList";
 import TMDBservice from "./services/TMDBservice";
+import Error from "./components/Error/Error";
+import Spinner from "./components/Spinner/Spinner";
+import Searchbar from "./components/Searchbar/Searchbar";
 
 import "./App.css";
 
@@ -14,11 +18,13 @@ export default class App extends Component {
     data: [],
     loading: true,
     error: false,
+    searchValue: null,
+    currentPage: 1,
+    totalPages: 1,
   };
 
-  constructor(props) {
-    super(props);
-    this.updateData();
+  componentDidMount() {
+    this.setState({ loading: false });
   }
 
   errorHandler = () => {
@@ -28,11 +34,27 @@ export default class App extends Component {
     });
   };
 
+  updateSearchValue = (text) => {
+    this.setState({ searchValue: text }, () => this.updateData());
+  };
+
+  showSpinner = () => {
+    this.setState({ loading: true });
+  };
+
+  pageSelected = (page) => {
+    this.setState({ currentPage: page }, () => {
+      window.scrollTo(0, 0);
+      this.updateData();
+    });
+  };
+
   updateData() {
     const moviesArr = [];
+    const { searchValue, currentPage } = this.state;
 
     this.movieService
-      .getMovies()
+      .getMovies(searchValue, currentPage)
       .then((movies) => {
         movies.results.forEach((movie) => {
           moviesArr.push({
@@ -43,12 +65,15 @@ export default class App extends Component {
               : "The date is unknown",
             genres: ["drama", "action"],
             description: movie.overview,
-            img: `https://image.tmdb.org/t/p/original${movie.poster_path}`,
+            img: movie.poster_path
+              ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
+              : // eslint-disable-next-line global-require
+                require("./components/MovieListItem/noimage.jpg"),
           });
         });
-
         this.setState({
           data: moviesArr,
+          totalPages: movies.total_pages > 500 ? 500 : movies.total_pages,
           loading: false,
         });
       })
@@ -56,32 +81,42 @@ export default class App extends Component {
   }
 
   render() {
-    const { data, loading, error } = this.state;
-    const errorScreen = error ? <ErrorMessage /> : null;
+    const { data, searchValue, loading, error, totalPages } = this.state;
+    const errorScreen = error ? <Error description="Can't connect to server" /> : null;
     const spinner = loading ? <Spinner /> : null;
-    const content = !loading ? <MovieList data={data} /> : null;
+    const content =
+      !error && !loading ? (
+        <MovieList
+          data={data}
+          loading={loading}
+          searchValue={searchValue}
+          totalPages={totalPages}
+          pageSelected={this.pageSelected}
+        />
+      ) : null;
 
     return (
       <main className="main">
-        {errorScreen}
-        {spinner}
-        {content}
+        <Offline>
+          <Error description="Check internet connection" />
+        </Offline>
+
+        <Online>
+          <Row gutter={[32, 14]} justify="center">
+            <Col span={24}>
+              <Searchbar
+                updateSearchValue={this.updateSearchValue}
+                showSpinner={this.showSpinner}
+              />
+            </Col>
+            <Col span={24}>
+              {errorScreen}
+              {spinner}
+              {content}
+            </Col>
+          </Row>
+        </Online>
       </main>
     );
   }
-}
-
-function Spinner() {
-  return (
-    <Spin tip="Loading" size="large">
-      <div className="content" />
-    </Spin>
-  );
-}
-
-function ErrorMessage() {
-  if (!navigator.onLine) {
-    return <Alert message="Error" description="Check Internet" type="error" />;
-  }
-  return <Alert message="Error" description="Can't connnet to server" type="error" />;
 }
