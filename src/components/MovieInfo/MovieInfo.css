@@ -1,0 +1,35 @@
+.title {
+  margin-block: 0 !important;
+  max-width: 80%;
+}
+
+.rating {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid;
+}
+
+.description {
+  font-size: 12px;
+
+  @media (max-width: 576px) {
+    position: relative;
+    left: -90px;
+  }
+
+  @media (max-width: 769px) {
+    overflow: hidden;
+    max-height: 5em;
+  }
+}
+
+.rate {
+  align-self: flex-end;
+  margin-block: auto 10px;
+  padding-right: 5px;
+  font-size: 17px;
+}

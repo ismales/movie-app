@@ -1,10 +1,15 @@
 .movie-list-item {
-  width: 454px;
+  min-width: 378px;
+  max-width: 454px;
   height: 281px;
+  padding-right: 5px;
 
   box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
-  min-width: 380px;
   list-style: none;
+
+  @media (max-width: 576px) {
+    padding: 10px;
+  }
 }
 
 .movie-img {
@@ -12,6 +17,11 @@
   height: 100%;
   object-fit: cover;
   background-color: #f0efed;
+
+  @media (max-width: 576px) {
+    width: 80px;
+    height: 110px;
+  }
 }
 
 .content {

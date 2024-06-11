@@ -12,7 +12,7 @@ export default class MovieList extends Component {
     const content = (
       <>
         {data.map((movie) => (
-          <Col span={12} key={movie.id}>
+          <Col xs={{ span: 24 }} sm={{ span: 12 }} key={movie.id}>
             <MovieListItem movie={movie} />
           </Col>
         ))}

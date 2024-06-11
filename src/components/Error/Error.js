@@ -5,13 +5,13 @@ import "./Error.css";
 
 export default class Error extends Component {
   render() {
-    const { description } = this.props;
+    const { description, type } = this.props;
     return (
       <Alert
         className="error-text"
         message="Error"
         description={description}
-        type="error"
+        type={type}
       />
     );
   }

@@ -15,6 +15,12 @@ export default class Searchbar extends Component {
   };
 
   render() {
-    return <Input placeholder="Type to search..." onChange={this.onChange} />;
+    return (
+      <Input
+        name="search bar"
+        placeholder="Type to search..."
+        onChange={this.onChange}
+      />
+    );
   }
 }
